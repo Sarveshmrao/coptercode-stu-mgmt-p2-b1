@@ -18,7 +18,7 @@ function StudentForm({ onAdd }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white p-6 shadow-md rounded-xl max-w-md mx-auto"
+      className="bg-gray-800 p-6 shadow-md rounded-xl max-w-md mx-auto"
     >
       {" "}
       <h2 className="text-xl font-semibold mb-4">Add New Student</h2>{" "}
