@@ -1,5 +1,5 @@
-import { useState } from "react";
-function StudentForm({ onAdd }) {
+import { useState, useEffect } from "react";
+function StudentForm({ onAdd, initialData }) {
   const [form, setForm] = useState({
     name: "",
     roll: "",
@@ -12,16 +12,22 @@ function StudentForm({ onAdd }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!form.name || !form.roll) return alert("Name & Roll are required");
-    onAdd({ ...form, id: Date.now() });
+    onAdd({ ...form, id: initialData?.id || Date.now() });
     setForm({ name: "", roll: "", department: "", email: "" });
   };
+
+  useEffect(() => {
+    if (initialData) setForm(initialData);
+  }, [initialData]);
   return (
     <form
       onSubmit={handleSubmit}
       className="bg-gray-800 p-6 shadow-md rounded-xl max-w-md mx-auto"
     >
       {" "}
-      <h2 className="text-xl font-semibold mb-4">Add New Student</h2>{" "}
+      <h2 className="text-xl font-semibold mb-4">
+        {initialData ? "Edit Student" : "Add New Student"}
+      </h2>
       <input
         className="w-full p-2 border mb-3"
         type="text"
@@ -58,9 +64,8 @@ function StudentForm({ onAdd }) {
         type="submit"
         className="bg-blue-600 text-white py-2 px-4 rounded"
       >
-        {" "}
-        Add Student{" "}
-      </button>{" "}
+        {initialData ? "Edit Student" : "Add New Student"}
+      </button>
     </form>
   );
 }

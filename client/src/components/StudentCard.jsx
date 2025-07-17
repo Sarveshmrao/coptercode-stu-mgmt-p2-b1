@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 function StudentCard({ student }) {
   return (
     <div className="bg-white shadow-md rounded-xl p-4 text-gray-800">
@@ -11,6 +12,14 @@ function StudentCard({ student }) {
       <p>
         <strong>Email:</strong> {student.email}
       </p>
+      <div className="mt-4">
+        <Link
+          to={`/edit/${student.id}`}
+          className="text-blue-600 hover:text-blue-800 font-medium transition-colors"
+        >
+          Edit
+        </Link>
+      </div>
     </div>
   );
 }
